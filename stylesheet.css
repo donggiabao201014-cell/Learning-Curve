@@ -21,7 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     margin: 0;
-    padding: 20px;
+    padding: 1vw; /* Fluid side padding scaling with device size */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,57 +31,56 @@ body {
 }
 
 h1 {
-    margin: 0 0 20px 0;
-    font-size: calc(1.8rem + 1vw);
+    margin: 0 0 15px 0;
+    font-size: calc(1.4rem + 1vw); /* Title balances fluidly */
     text-align: center;
 }
 
 .main-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
-    max-width: 1400px;
+    max-width: 100%; /* Spans full horizontal screen footprint */
 }
 
 /* =========================================================================
-   1. TABLE CONTAINER WRAPPER
+   1. SCREEN CONTAINER ADAPTER
    ========================================================================= */
 .table-container {
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
+    overflow-x: auto; /* Ensures older/tiny screens can side-scroll if needed */
     overflow-y: hidden;
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 0; /* Clear full square workspace framing */
-    padding: 15px;
+    border-radius: 0;
+    padding: 10px;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
 }
 
 /* =========================================================================
-   2. THE GRID MATRIX
+   2. DYNAMIC GRID MATRIX (Grows and shrinks matching screen aspect ratios)
    ========================================================================= */
 .periodic-table {
     display: grid;
-    grid-template-columns: repeat(18, minmax(55px, 1fr));
-    grid-template-rows: repeat(7, minmax(65px, 1fr));
-    gap: 6px;
+    /* Uses dynamic viewport width (vw) units to size elements relative to your display monitor */
+    grid-template-columns: repeat(18, minmax(calc(15px + 2.5vw), 1fr));
+    grid-template-rows: repeat(7, minmax(calc(20px + 3vw), 1fr));
+    gap: 0.4vw; /* Adaptive gaps between layout elements */
     width: 100%;
-    min-width: 1180px; 
     margin: 0 auto;
 }
 
 /* =========================================================================
-   3. ELEMENT CARDS (PERFECTLY SQUARE + FULL NEON PERIMETER OUTLINES)
+   3. ELEMENT CARDS
    ========================================================================= */
 .element-card {
     background-color: var(--card-bg);
-    /* Full 2px border width setup to contain neon accents */
     border: 2px solid var(--border-color); 
-    border-radius: 0 !important; /* Forces strict, sharp full square corners */
-    padding: 6px;
+    border-radius: 0 !important;
+    padding: 0.3vw; /* Micro padding adapts cleanly */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -89,36 +88,35 @@ h1 {
     user-select: none;
     height: 100%;
     box-sizing: border-box;
-    cursor: pointer !important; /* Guarantees pointer layout responsiveness */
+    cursor: pointer !important;
     pointer-events: auto !important;
 }
 
 .element-card:hover {
     background-color: var(--card-hover);
-    transform: scale(1.05);
+    transform: scale(1.08);
     z-index: 5;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
 }
 
-/* Fluid Typography Control Rules */
+/* Ultra-fluid typographic sizing anchors */
 .element-card .atomic-num {
-    font-size: calc(0.6rem + 0.1vw);
+    font-size: calc(0.45rem + 0.2vw);
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1;
 }
 
 .element-card .symbol {
-    font-size: calc(1.15rem + 0.2vw);
+    font-size: calc(0.7rem + 0.5vw);
     font-weight: 800;
     text-align: center;
-    margin: 2px 0;
-    color: var(--text-primary);
+    margin: 1px 0;
     line-height: 1.1;
 }
 
 .element-card .name {
-    font-size: calc(0.55rem + 0.05vw);
+    font-size: calc(0.35rem + 0.2vw);
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -129,7 +127,7 @@ h1 {
 }
 
 /* =========================================================================
-   4. PERIMETER MAPPINGS (Colors the ENTIRE square border)
+   4. PERIMETER MAPPINGS
    ========================================================================= */
 .reactive-nonmetal { border-color: var(--reactive-nonmetal); }
 .noble-gas { border-color: var(--noble-gas); }
@@ -141,7 +139,6 @@ h1 {
 .lanthanide { border-color: var(--lanthanide); }
 .actinide { border-color: var(--actinide); }
 
-/* Internal chemical tracking text symbols matched color-wise */
 .reactive-nonmetal .symbol { color: var(--reactive-nonmetal); }
 .noble-gas .symbol { color: var(--noble-gas); }
 .alkali-metal .symbol { color: var(--alkali-metal); }
@@ -158,9 +155,9 @@ h1 {
 .info-panel {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 0; /* Form-matches geometric style scheme */
-    min-height: 140px;
-    padding: 20px;
+    border-radius: 0;
+    min-height: 120px;
+    padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,44 +173,54 @@ h1 {
 .panel-content {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    .panel-content {
+        flex-direction: column; /* Stacks display fields on mobile phones */
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
 .panel-badge {
-    font-size: 3rem;
+    font-size: calc(1.5rem + 1.5vw);
     font-weight: 800;
-    width: 80px;
-    height: 80px;
+    width: calc(50px + 2vw);
+    height: calc(50px + 2vw);
     background: rgba(255,255,255,0.02);
     border: 2px dashed var(--border-color);
     border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .panel-details {
     flex: 1;
+    width: 100%;
 }
 
 .panel-header-row {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 8px;
+    gap: 12px;
+    margin-bottom: 6px;
 }
 
 .panel-header-row h2 {
-    font-size: 1.6rem;
+    font-size: calc(1.1rem + 0.5vw);
     font-weight: 800;
     margin: 0;
 }
 
 .cat-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: 0;
     border: 1px solid var(--border-color);
     letter-spacing: 0.5px;
@@ -221,32 +228,32 @@ h1 {
 
 .panel-details p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0 0 15px 0;
+    font-size: calc(0.8rem + 0.1vw);
+    line-height: 1.4;
+    margin: 0 0 12px 0;
 }
 
 .meta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
 }
 
 .meta-item {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    font-size: 0.8rem;
+    gap: 1px;
+    font-size: 0.75rem;
 }
 
 .meta-item strong {
     color: var(--text-secondary);
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     opacity: 0.7;
 }
 
 .meta-item span {
-    font-size: 0.95rem;
+    font-size: calc(0.8rem + 0.15vw);
     font-weight: 600;
 }
