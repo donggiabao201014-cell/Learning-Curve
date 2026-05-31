@@ -1,0 +1,252 @@
+:root {
+    --reactive-nonmetal: #4ea8de;
+    --noble-gas: #b5179e;
+    --alkali-metal: #ff4d6d;
+    --alkaline-earth: #ff9f1c;
+    --metalloid: #2ec4b6;
+    --post-transition: #00b4d8;
+    --transition-metal: #ffb703;
+    --lanthanide: #ff758f;
+    --actinide: #48cae4;
+    --bg-color: #12161a;
+    --card-bg: #1a2026;
+    --card-hover: #242c35;
+    --text-primary: #ffffff;
+    --text-secondary: #adb5bd;
+    --border-color: #2d3742;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+    font-size: calc(1.8rem + 1vw);
+    text-align: center;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* =========================================================================
+   1. TABLE CONTAINER WRAPPER
+   ========================================================================= */
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* Clear full square workspace framing */
+    padding: 15px;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================================================
+   2. THE GRID MATRIX
+   ========================================================================= */
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(55px, 1fr));
+    grid-template-rows: repeat(7, minmax(65px, 1fr));
+    gap: 6px;
+    width: 100%;
+    min-width: 1180px; 
+    margin: 0 auto;
+}
+
+/* =========================================================================
+   3. ELEMENT CARDS (PERFECTLY SQUARE + FULL NEON PERIMETER OUTLINES)
+   ========================================================================= */
+.element-card {
+    background-color: var(--card-bg);
+    /* Full 2px border width setup to contain neon accents */
+    border: 2px solid var(--border-color); 
+    border-radius: 0 !important; /* Forces strict, sharp full square corners */
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.2s, transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    user-select: none;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer !important; /* Guarantees pointer layout responsiveness */
+    pointer-events: auto !important;
+}
+
+.element-card:hover {
+    background-color: var(--card-hover);
+    transform: scale(1.05);
+    z-index: 5;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* Fluid Typography Control Rules */
+.element-card .atomic-num {
+    font-size: calc(0.6rem + 0.1vw);
+    color: var(--text-secondary);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.element-card .symbol {
+    font-size: calc(1.15rem + 0.2vw);
+    font-weight: 800;
+    text-align: center;
+    margin: 2px 0;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.element-card .name {
+    font-size: calc(0.55rem + 0.05vw);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-secondary);
+    font-weight: 600;
+    width: 100%;
+}
+
+/* =========================================================================
+   4. PERIMETER MAPPINGS (Colors the ENTIRE square border)
+   ========================================================================= */
+.reactive-nonmetal { border-color: var(--reactive-nonmetal); }
+.noble-gas { border-color: var(--noble-gas); }
+.alkali-metal { border-color: var(--alkali-metal); }
+.alkaline-earth { border-color: var(--alkaline-earth); }
+.metalloid { border-color: var(--metalloid); }
+.post-transition { border-color: var(--post-transition); }
+.transition-metal { border-color: var(--transition-metal); }
+.lanthanide { border-color: var(--lanthanide); }
+.actinide { border-color: var(--actinide); }
+
+/* Internal chemical tracking text symbols matched color-wise */
+.reactive-nonmetal .symbol { color: var(--reactive-nonmetal); }
+.noble-gas .symbol { color: var(--noble-gas); }
+.alkali-metal .symbol { color: var(--alkali-metal); }
+.alkaline-earth .symbol { color: var(--alkaline-earth); }
+.metalloid .symbol { color: var(--metalloid); }
+.post-transition .symbol { color: var(--post-transition); }
+.transition-metal .symbol { color: var(--transition-metal); }
+.lanthanide .symbol { color: var(--lanthanide); }
+.actinide .symbol { color: var(--actinide); }
+
+/* =========================================================================
+   5. INFO SHOWCASE DASHBOARD PANEL
+   ========================================================================= */
+.info-panel {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* Form-matches geometric style scheme */
+    min-height: 140px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.panel-placeholder {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.panel-content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+}
+
+.panel-badge {
+    font-size: 3rem;
+    font-weight: 800;
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.02);
+    border: 2px dashed var(--border-color);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-details {
+    flex: 1;
+}
+
+.panel-header-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.panel-header-row h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.cat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 0;
+    border: 1px solid var(--border-color);
+    letter-spacing: 0.5px;
+}
+
+.panel-details p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.8rem;
+}
+
+.meta-item strong {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.meta-item span {
+    font-size: 0.95rem;
+    font-weight: 600;
+}

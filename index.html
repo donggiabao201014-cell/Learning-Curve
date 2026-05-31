@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Curve</title>
+    <link rel="icon" type="image/svg+xml" href="gemini-svg.svg">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #fff;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .background-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        .background-glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.12) 0%, rgba(0,0,0,0) 70%);
+            bottom: -150px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        .welcome-container {
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #00ff88, #00b4d8);
+            /* Fixed: Both defined to clear linter warnings */
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-grid {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            margin: 40px 0;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: inherit;
+            flex: 1;
+            min-width: 280px;
+            max-width: 360px;
+        }
+
+        .menu-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: left;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .menu-link:hover .menu-card {
+            transform: translateY(-6px);
+            border-color: #00ff88;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .menu-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .icon-table { color: #00b4d8; }
+        .icon-cards { color: #00ff88; }
+
+        .menu-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .menu-card p {
+            color: #94a3b8;
+            line-height: 1.5;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff88 0%, #00b4d8 100%);
+            color: #0f172a;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            border-top: 1px solid #1e293b;
+            padding-top: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-glow"></div>
+    <div class="background-glow-2"></div>
+
+    <div class="welcome-container">
+        <h1>Learning Curve</h1>
+        <p class="subtitle">Dive into the complete interactive dataset of all 118 elements. Master atomic weights, configurations, and chemical groupings.</p>
+        
+        <div class="menu-grid">
+            <a href="table.html" class="menu-link">
+                <div class="menu-card">
+                    <div class="menu-icon icon-table">▤</div>
+                    <h3>Interactive Grid Table</h3>
+                    <p>Explore elements inside their modern periodic matrix with the sync-colored flashcard inspection deck.</p>
+                </div>
+            </a>
+
+            <a href="elements.html" class="menu-link">
+                <div class="menu-card">
+                    <div class="menu-icon icon-cards">🎴</div>
+                    <h3>Sequential Flashcards</h3>
+                    <p>Review specific details using double-sided 3D index cards with custom autoplay pacing engine loops.</p>
+                </div>
+            </a>
+        </div>
+
+        <a href="table.html" class="cta-btn">Quick Start Studying</a>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">118</div>
+                <div class="stat-label">Elements</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Categories</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Periodic Table</title>
+    <link rel="icon" type="image/svg+xml" href="gemini-svg.svg">
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+        .header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 10px auto;
+        }
+        .menu-back-btn {
+            background: #1a2026;
+            border: 1px solid #2d3742;
+            color: #adb5bd;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+        .menu-back-btn:hover {
+            background: #242c35;
+            color: #fff;
+            border-color: #4ea8de;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <h1 style="margin: 0;">Periodic Table of Elements</h1>
+        <a href="index.html" class="menu-back-btn">← Back to Dashboard</a>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="info-panel" id="info-panel">
+            <div class="panel-placeholder" id="placeholder">Select an element card from below to view details</div>
+            <div class="panel-content" id="panel-content" style="display: none;">
+                <div class="panel-badge" id="p-badge">H</div>
+                <div class="panel-details">
+                    <div class="panel-header-row">
+                        <h2 id="p-name">Hydrogen</h2>
+                        <span class="cat-label" id="p-cat-label">REACTIVE NONMETAL</span>
+                    </div>
+                    <p id="p-desc">Description text load point...</p>
+                    <div class="meta-grid">
+                        <div class="meta-item"><strong>Atomic Number</strong><span id="p-num">1</span></div>
+                        <div class="meta-item"><strong>Atomic Mass</strong><span id="p-weight">1.008 u</span></div>
+                        <div class="meta-item"><strong>State</strong><span id="p-state">Gas</span></div>
+                        <div class="meta-item"><strong>Discoverer</strong><span id="p-disc">Cavendish</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="periodic-table" id="grid"></div>
+        </div>
+    </div>
+
+    <script src="code.js"></script>
+</body>
+</html>
